@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/angular.min.js" ></script>
+		<script>
+			function fn1($scope){
+				$scope.name='angular';
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div ng-controller='fn1'>
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>

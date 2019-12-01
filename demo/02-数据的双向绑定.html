@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据的双向绑定</title>
+		<!--使用的版本是1.3.0版本-->
+		<script type="text/javascript" src="../js/angular.min.js" ></script>
+		<script>
+			function fn1($scope,$timeout){
+				$scope.name='angular';
+				/*setTimeout(function(){
+					$scope.name='hi angular';
+				},2000)*/
+				/*js中原始的定时器不会刷新视图，所以我们要注入$timeout就行定时*/
+				$timeout(function(){
+					$scope.name='hi angular';
+				},2000);
+				$scope.show=function(){
+					$scope.name='hello';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<!--/*也可以使用ng-click命令，改变视图*/-->
+		<div ng-controller='fn1' ng-click='show()'>
+			<!--在model中绑定数据，改变view影响view-->
+			<input type="text" ng-model='name' />
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>

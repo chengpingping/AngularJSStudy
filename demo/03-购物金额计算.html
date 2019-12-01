@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物金额计算</title>
+		<script type="text/javascript" src="../js/angular.min.js" ></script>
+		<script>
+			function fn1($scope){
+				$scope.iphone={
+					money:5,
+					num:1
+				};
+				$scope.name="iphone";
+			}
+		</script>
+	</head>
+	<body>
+		<div ng-controller='fn1'>
+			<p>{{name}}</p>
+			<p>价格:<input type="text" ng-model='iphone.money' /></p>
+			<p>个数:<input type="text" ng-model='iphone.num' /></p>
+			<p>费用:<span>{{iphone.money*iphone.num}}</span></p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--版本1.30以下-->
+		<script type="text/javascript" src="../js/angular.min.js" ></script>
+		<script>
+			/*model:主要是数据*/
+			function fn1($scope){
+				$scope.name='angular';
+			}
+			/*$scope,$rootScope不能被修改，依赖注入原则*/
+			function fn2($scope,$rootScope){
+				$scope.name='hello angular';
+				/*rootScope是一个全局作用域*/
+				$rootScope.age=10;
+				$scope.sex='male';
+			}
+		</script>
+	</head>
+	<body>
+		<!--主要用于体会MVC思想：model、view、controller-->
+		<!--controller-->
+		<div ng-controller='fn1'>
+			<!--view:视图-->
+			<!--只能访问fn1作用域中的name-->
+			<p>{{name}}</p>
+			<!--可以访问全局作用域中的age-->
+			<p>{{age}}</p>
+			<!--无法访问fn2作用域中的sex-->
+			<p>{{sex}}</p>
+		</div>
+		<div ng-controller='fn2'>
+			<!--view:视图-->
+			<p>{{name}}</p>
+		</div>
+	</body>
+</html>
