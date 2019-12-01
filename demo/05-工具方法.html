@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="UTF-8">
+		<title>工具方法</title>
+		<script type="text/javascript" src="../js/angular.min.js" ></script>
+		<script>
+			function show(){
+				console.log(this);
+			}
+			//show();//window
+			/*改变this的指向*/
+			angular.bind(document,show)();//document
+			/*拷贝对象*/
+			var a={
+				name:'hello'
+			}
+			var b={
+				age:20
+			}
+			/*var c=angular.copy(a,b);
+			console.log(b);*///变成了a对象，a覆盖了所有的值
+			
+			var d=angular.extend(b,a);
+			console.log(b);//拥有了a的属性和b的属性
+			window.onload=function(){
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div ng-controller>
+			
+		</div>
+	</body>
+</html>

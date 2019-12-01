@@ -8,9 +8,18 @@
 			function fn1($scope){
 				$scope.iphone={
 					money:5,
-					num:1
+					num:1,
+					fre:10
 				};
 				$scope.name="iphone";
+				$scope.sum=function(){
+					return $scope.iphone.money*$scope.iphone.num;
+				};
+				$scope.$watch($scope.sum,function(newValue,oldValue){
+					/*console.log(newValue);
+					console.log(oldValue);*/
+					$scope.iphone.fre=newValue>5000?0:10;
+				},true);
 			}
 		</script>
 	</head>
@@ -19,7 +28,10 @@
 			<p>{{name}}</p>
 			<p>价格:<input type="text" ng-model='iphone.money' /></p>
 			<p>个数:<input type="text" ng-model='iphone.num' /></p>
-			<p>费用:<span>{{iphone.money*iphone.num}}</span></p>
+			<!--<p>费用:<span>{{iphone.money*iphone.num|currency:"￥"}}</span></p>-->
+			<p>费用:<span>{{sum()|currency:"￥"}}</span></p>
+			<p>运费：<span>{{iphone.fre|currency:"￥"}}</span></p>
+			<p>总额：<span>{{sum()+iphone.fre|currency:"￥"}}</span></p>
 		</div>
 	</body>
 </html>

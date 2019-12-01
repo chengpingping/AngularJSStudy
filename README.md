@@ -126,3 +126,103 @@ controller会定义一个作用域，这个作用域就是函数的`scope`，`sc
 [例子:购物金额计算](demo/03-购物金额计算.html)
 
 **过滤器**
+
+帮助我们进行一些常用的数据操作
+
+	currency:"￥"；//格式化货币数据，默认是$;
+
+**监听器**
+
+监听相关数据的变化：
+
+	$scope.$watch(parameter,function(newValue,oldValue)[,true]);
+
+parameter:被监听的对象,可以是变量、对象、函数；
+
+function:回调函数；
+
+true:第三个参数可选，表示监听的深度；如果不填，只能监听单个值，true表示监听整个对象；
+
+newValue:改变后的值；
+
+oldValue:改变前的值；
+
+# 模块化
+
+减小全局的污染，和命名冲突；
+
+能让模块之间实现依赖；
+
+在之前的[demo](demo/01-MVC模式.html)中，函数定义在了全局的js环境下，很容易与其他函数产生冲突！
+
+**解决方法，实现模块化**：
+
+	angular.module('myApp',[]);
+
+anguler:是angularjs中的访问接口，类似于JQuery中的`$`;
+
+module:是angular中的方法，用于创建模块
+
+'myApp':是module方法的第一个参数，是当前创建的模块的名字；
+
+[]:第二个参数是一个数组，当前模块所要**依赖**的其他模块；
+
+当指定了模块后，之前在html标签中添加的`ng-app`指令就要去指定具体的模块名称；
+
+	ng-app='模块的名字';
+
+对之前的demo进行模块化:[demo](demo/04-模块化.html)
+
+**压缩问题**
+
+当使用工具对js代码压缩时，会改变函数的参数，比如`$scope`；这就违背了angularjs**依赖注入**的原则；
+
+解决办法：
+
+angular提供了一种写法，将函数改写程数组的方式:
+
+	m1.controller('fn1',['$scope',function($s){
+		$s.name='hi angular'
+	}]);
+
+# 工具方法
+
+[demo](demo/05-工具方法.html)
+
+## angular.bind()
+
+与JQuery中的`$.proxy()`类似：用于改变this的指向；
+
+	angular.bind(thisArg,arg);
+
+thisArg:this的当前指向；
+
+arg:调用的对象；如果是函数：
+
+	angular.bind(thisArg,fn,arg1)(arg1);//传参的方式由几种
+
+## angular.copy()
+
+拷贝对象的方法：
+
+	var c=angular.copy(a,b);//b也变成了a对象，a覆盖了所有的值
+
+## angular.extend()
+
+对象继承：
+
+	var d=angular.extend(b,a);//拥有了a的属性和b的属性
+	
+## 与判断相关的工具方法
+
+	angular.isArray//判断是否是数组
+	angular.isDate//判断是否是日期对象
+	angular.isDefined//判断元素是否定义
+	angular.isUndefined//判断是否是未定义
+	angular.isFunction//判断是否是Function对象（函数）
+	angular.isNumber
+	angular.isObject
+	angular.isString
+	angular.isElement//判断是否是一个元素
+
+
