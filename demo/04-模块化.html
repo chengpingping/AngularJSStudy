@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html ng-app='myApp'>
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>模块化</title>
 		<script type="text/javascript" src="../js/angular.min.js" ></script>
 		<script>
-			var m1=angular.module('myApp',[]);
+			var m1=angular.module('myApp1',[]);
+			var m2=angular.module('myApp2',[]);
 			/*m1.controller('fn1',function($scope){
 				$scope.name='hi angular'
 			});
@@ -16,9 +17,14 @@
 			m1.controller('fn1',['$scope',function($s){
 				$s.name='hi angular'
 			}]);
-			m1.controller('fn2',['$scope',function($s){
+			m2.controller('fn2',['$scope',function($s){
 				$s.name='hello angular'
 			}]);
+			document.onclick=function(){
+				var div=document.getElementsByTagName('div');
+				angular.bootstrap(div[0],['myApp1']);
+				angular.bootstrap(div[1],['myApp2']);
+			}
 		</script>
 	</head>
 	<body>

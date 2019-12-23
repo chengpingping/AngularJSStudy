@@ -199,7 +199,7 @@ thisArg:this的当前指向；
 
 arg:调用的对象；如果是函数：
 
-	angular.bind(thisArg,fn,arg1)(arg1);//传参的方式由几种
+	angular.bind(thisArg,fn,arg1)(arg1);//传参的方式有几种
 
 ## angular.copy()
 
@@ -224,5 +224,51 @@ arg:调用的对象；如果是函数：
 	angular.isObject
 	angular.isString
 	angular.isElement//判断是否是一个元素
+
+**其他工具方法**
+
+	angular.version//ng版本
+	angular.equals//比较两个元素是否相等（NaN和数组以及对象比较的结构都为true）
+	angular.forEach(value,function(value,i){})//与JQuery不同在于它首先得到的是value然后是index；
+	angular.fromJson（JsonObj）/toJson(str[,true])//第二参数可以将结果格式化
+	angular.identity/noop//第一个返回原值，第二个是一个空函数；
+	angular.lowercase/uppercase//大小写转换；
+	angular.element//相当于JQuery中的$，实现了JQuery中的部分方法；
+	angular.bootstrap(element,[])//angular的动态初始化，之前使用ng-app进行了angular的静态初始化；当页面中需要多次初始化操作时使用；
+	angular.injector//注册器
+
+**angular与JQuery的关系**
+
+首先在angular.min.js中实现了JQuery的部分方法；
+
+	.css();
+
+angular.element==$(JQuery);//可以使用JQuery中的其他方法
+
+# $scope
+
+局部作用域
+
+**$scope.$watch**
+
+监听变化的数据
+
+**$scope.$apply**
+
+	setTimeout(function(){
+		$scope.$apply(function(){//刷新视图
+		//数据更新
+		})
+	},2000);
+
+# angular.module()
+
+模块
+
+**controller**
+
+**run**
+
+
 
 
